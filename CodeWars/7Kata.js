@@ -29,3 +29,30 @@ function toNumberArray(stringarray)
 {
   return stringarray.map(parseFloat);
 }
+
+
+// Description
+
+// accum("abcd");    // "A-Bb-Ccc-Dddd"
+// accum("RqaEzty"); // "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+// accum("cwAt");    // "C-Ww-Aaa-Tttt"
+
+// My Solution
+function accum(s) {
+  s = s.split('');
+  var newS = '';
+  for (var i = 0; i < s.length; i++){
+    if (i===0){
+      newS = newS + s[i].toUpperCase() + Array(i+1).join(s[i].toLowerCase())
+    }
+    else {
+      newS = newS + '-' + s[i].toUpperCase() + Array(i+1).join(s[i].toLowerCase());
+    }
+  }
+  return newS;
+}
+
+//shortest Solution
+function accum(s) {
+  return s.split('').map((x,index) => x.toUpperCase()+Array(index+1).join(x.toLowerCase())).join('-');
+};
