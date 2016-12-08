@@ -103,3 +103,52 @@ str[i] = alph[prop];
 }
   return str.join('');
 }
+
+
+
+
+
+// The goal of this exercise is to convert a string to a new string where each character in the new string is '(' if that character appears only once in the original string, or ')' if that character appears more than once in the original string. Ignore capitalization when determining if a character is a duplicate.
+//
+// Examples:
+//
+// "din" => "((("
+//
+// "recede" => "()()()"
+//
+// "Success" => ")())())"
+//
+// "(( @" => "))(("
+
+
+function duplicateEncode(word){
+    word = word.split('');
+    var newWord = [];
+    for (var i = 0; i < word.length; i++){
+      var letterCount = 0;
+      for (var j = 0; j < word.length; j++){
+        if (word[i].toLowerCase() === word[j].toLowerCase()){
+          letterCount++;
+        }
+      }
+      if (letterCount > 1){
+        newWord.push(")")
+      }
+      else {
+        newWord.push("(")
+      }
+    }
+    return newWord.join('');
+}
+
+
+//shortest solution
+function duplicateEncode(word){
+  return word
+    .toLowerCase()
+    .split('')
+    .map( function (a, i, w) {
+      return w.indexOf(a) == w.lastIndexOf(a) ? '(' : ')'
+    })
+    .join('');
+}
